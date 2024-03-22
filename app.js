@@ -21,7 +21,6 @@ app.get('/', (req, res, next) => {
       res.status(404).json({ err });
       throw err;
     }
-    // console.log(ip);
     res.status(200).json({ ip });
   });
 });
