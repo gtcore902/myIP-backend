@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const getIP = require('external-ip')();
 
+// CORS Middleware
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// GET route to retrieve external IP
 app.get('/', (req, res, next) => {
   getIP((err, ip) => {
     if (err) {
