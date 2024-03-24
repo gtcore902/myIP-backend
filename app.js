@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// GET route to retrieve external IP
+// Route to retrieve external IP from https://www.npmjs.com/package/external-ip package
 app.get('/', (req, res, next) => {
   getIP((err, ip) => {
     if (err) {
