@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const getIP = require('external-ip')();
+const getIpRoutes = require('./routes/getIp');
 
 // CORS Middleware
 app.use((req, res, next) => {
@@ -17,14 +17,6 @@ app.use((req, res, next) => {
 });
 
 // Route to retrieve external IP from https://www.npmjs.com/package/external-ip package
-app.get('/', (req, res, next) => {
-  getIP((err, ip) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
-    }
-    res.status(200).json({ ip });
-  });
-});
+app.use('/', getIpRoutes);
 
 module.exports = app;
