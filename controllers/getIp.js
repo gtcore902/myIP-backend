@@ -1,22 +1,10 @@
-const getIP = require('external-ip')();
+exports.getIp = (req, res, next) => {
+  // Checks if IP address is present in 'X-Forwarded-For' header
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-// exports.getIp = (req, res, next) => {
-//   getIP((err, ip) => {
-//     if (err) {
-//       res.status(404).json({ err });
-//       throw err;
-//     }
-//     res.status(200).json({ ip });
-//   });
-// };
+  // If the IP address is in an array format (may happen with 'X-Forwarded-For'), get the first IP address
+  const userIp = Array.isArray(ip) ? ip[0] : ip;
 
-exports.getIp = async (req, res, next) => {
-  try {
-    // Attempts to retrieve external IP address asynchronously
-    const ip = await getIP.get();
-    res.status(200).json({ ip });
-  } catch (err) {
-    console.error('Error retrieving external IP address:', err);
-    res.status(500).json({ error: 'Unable to retrieve external IP address' });
-  }
+  // Reply with the user's IP address
+  res.status(200).json({ ip: userIp });
 };
