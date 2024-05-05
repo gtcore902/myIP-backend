@@ -28,6 +28,10 @@ To run the server, execute the following command:
 node server.js
 ```
 
+### Features
+
+Get the IP address from the headers or connection properties of the req object.
+
 ### Usage
 
 Once the server is running, you can access it at `http://localhost:4000/` to get the external IP address.
