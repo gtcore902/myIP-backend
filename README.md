@@ -30,7 +30,7 @@ node server.js
 
 ### Features
 
-Get the IP address from the headers or connection properties of the req object.
+Get the external IP address from the headers or connection properties of the req object.
 
 ### Usage
 
